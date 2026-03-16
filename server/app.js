@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { initDb } from "./db/dbconnection.js"
+import routes from "./routs/launchersRouts.js"
 
 const port = 5000
 
@@ -11,7 +12,7 @@ app.use(cors())
 
 
 
-
+app.use("/api",routes)
 
 
 app.listen(port, async() => {
