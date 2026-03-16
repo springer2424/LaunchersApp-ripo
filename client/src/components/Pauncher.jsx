@@ -11,8 +11,6 @@ function Launcher({id,name,rocketType,latitude,longitude,city}) {
     <div>{latitude}</div>
     <div>{longitude}</div>
     <div>{city}</div>
-    <button>Details</button>
-    <button>DELETE</button>
     </>
   )
 }

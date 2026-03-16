@@ -3,11 +3,31 @@ import axios from "axios"
 import { useState } from 'react'
 import { useEffect } from 'react';
 import Launcher from '../components/Pauncher';
+import { useNavigate } from 'react-router';
+import Navbar from '../components/navbar';
+
 
 function HomePage() {
     const [launchers,setLaunchers] = useState(null)
-    // const [detals,setdetals] = useState(null)
-    // console.log(detals)
+    const [details,setDetails] = useState(null)
+    const [render,setRender] = useState(false)
+    const navegate = useNavigate()
+    
+    async function deleteL(l){
+        console.log(l._id)
+        try {
+        const response = await axios.delete(`http://localhost:5000/api/launchers/${l._id}`);
+        if(response){
+            console.log(response)
+            setRender(!render)
+            
+        }
+        } catch (error) {
+        console.error(error);
+        }
+
+        
+    }
 
    
 
@@ -23,12 +43,21 @@ function HomePage() {
     }
     
 
+
+useEffect((details) => {
+    if(details){
+        navegate("/launcherdetails")
+
+    }
+  
+},[details]);
 useEffect(() => {
   getLaunchers()
-}, []);
+}, [render]);
   
   return (
     <>
+    <Navbar/>
     {!launchers ||launchers.length === 0 ? <div> no Launchers in the sistem </div> : launchers.map((l)=>(
         
         
@@ -43,6 +72,8 @@ useEffect(() => {
         city={l.city}
         
         />
+        <button onClick={()=>setDetails(l)}>Details</button>
+        <button onClick={()=>deleteL(l)}>DELETE</button>
        
         </>
        

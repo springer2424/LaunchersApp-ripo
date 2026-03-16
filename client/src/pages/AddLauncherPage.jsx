@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import Navbar from '../components/navbar'
 
 function AddLauncherPage() {
     const [name,setName] = useState(null)
@@ -32,6 +33,8 @@ function AddLauncherPage() {
   return (
     <>
     <div>AddLauncherPage</div>
+    <Navbar/>
+    
     <form onSubmit={preventDifolt}>
         <label htmlFor="name">name</label>
         <input onChange={(e)=>setName(e.target.value)} type="text" id='name'/>
