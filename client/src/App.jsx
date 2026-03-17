@@ -5,16 +5,22 @@ import './App.css'
 import HomePage from './pages/HomePage'
 import AddLauncherPage from './pages/AddLauncherPage'
 import LauncherDetailsPage from './pages/LauncherDetailsPage'
+import LoginPage, { LimitesROutd, ProtectedRouts } from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
     <Routes>
-      <Route path="/home" element={<HomePage/>} />
-      <Route path="/addlauncher" element={<AddLauncherPage/>} />
-      <Route path="/launcherdetails" element={<LauncherDetailsPage/>} />
+      <Route path="/" element={<LoginPage/>} />
+      <Route path="/home" element={<ProtectedRouts><HomePage/></ProtectedRouts>} />
+      <Route path="/addlauncher" element={<ProtectedRouts><LimitesROutd arr={["admin","intelligence"]}><AddLauncherPage/></LimitesROutd></ProtectedRouts>} />
+      <Route path="/launcherdetails" element={<ProtectedRouts><LimitesROutd arr={["admin","intelligence"]}><LauncherDetailsPage/></LimitesROutd></ProtectedRouts>} />
+      <Route path="/Register" element={<ProtectedRouts><LimitesROutd arr={["admin","intelligence"]}><RegisterPage/></LimitesROutd></ProtectedRouts>} />
+      <Route path="*" element={<LoginPage/>} />
+      
 
     </Routes>
       

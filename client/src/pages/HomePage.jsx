@@ -32,8 +32,11 @@ function HomePage() {
    
 
     async function getLaunchers() {
+        const token = JSON.parse(localStorage.getItem("token"));
         try {
-        const response = await axios.get('http://localhost:5000/api/launchers');
+        const response = await axios.get('http://localhost:5000/api/launchers',{
+            headers : { authorization :`Bearer ${token}`}
+        });
         if(response.data){
             setLaunchers(response.data.data)
         }
