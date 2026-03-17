@@ -12,7 +12,7 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<HomePage/>} />
+      <Route path="/home" element={<HomePage/>} />
       <Route path="/addlauncher" element={<AddLauncherPage/>} />
       <Route path="/launcherdetails" element={<LauncherDetailsPage/>} />
 
